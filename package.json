@@ -1,0 +1,27 @@
+{
+  "name": "fireant-stylus",
+  "version": "0.0.1",
+  "description": "Stylus plugin for Fireant",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jari Lehtinen <jarifeature.fi>",
+  "license": "MIT",
+  "dependencies": {
+    "autoprefixer-stylus": "^0.13.0",
+    "chalk": "^1.1.3",
+    "clean-css": "^4.0.6",
+    "global": "^4.3.1",
+    "stylus": "^0.54.5"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fireantjs/fireant-stylus.git"
+  },
+  "bugs": {
+    "url": "https://github.com/fireantjs/fireant-stylus/issues"
+  },
+  "homepage": "https://github.com/fireantjs/fireant-stylus#readme"
+}
