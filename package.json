@@ -1,6 +1,6 @@
 {
   "name": "fireant-stylus",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Stylus plugin for Fireant",
   "main": "index.js",
   "scripts": {
