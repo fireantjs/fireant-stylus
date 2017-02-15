@@ -1,7 +1,3 @@
-/**
- * @todo Make alternative Stylus option without autoprefixer if someone wants to use a plugin within task
- */
-
 var stylus = require('stylus');
 var autoprefixer = require('autoprefixer-stylus');
 var minifycss = require('clean-css');
@@ -13,7 +9,7 @@ var fs = require('fs');
 // Default minify options
 var options = {
     minify: {
-        enabled: true,
+        disabled: false,
         compatibility: 'ie9',
         keepBreaks: false,
         keepSpecialComments: 0,
@@ -21,6 +17,7 @@ var options = {
         sourceMap: false
     },
     autoprefixer: {
+        disabled: false,
         browsers: ['last 3 versions', 'safari 5', 'ie 9', 'opera 12.1', 'ios 6', 'android 4']
     }
 };
@@ -49,16 +46,22 @@ module.exports = function(file) {
     }
 
     // Run Stylus
-    stylus(source, options).
-        use(autoprefixer(options.autoprefixer)).
-        include(folder).
+    var inst;
+
+    if (options.autoprefixer.disabled) {
+        inst = stylus(source);
+    } else {
+        inst = stylus(source).use(autoprefixer(options.autoprefixer));
+    }
+
+    inst.include(folder).
         render(function(err, source) {
             if (err) {
                 console.log(timestamp(), chalk.yellow.bold('-------------- ERROR IN ' + to + ' --------------'));
                 console.log(timestamp(), chalk.red(err.message));
                 return false;
             } else {
-                if (options.minify.enabled) {
+                if (!options.minify.disabled) {
                     var output = new minifycss(options.minify).minify(source);
                     css = output.styles;
                 } else {
