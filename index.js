@@ -42,7 +42,7 @@ module.exports = function(file) {
     if (file) {
         source = fs.readFileSync(file).toString();
     } else {
-        source = this.stdout || this.toString();
+        source = this.toString();
     }
 
     // Run Stylus
