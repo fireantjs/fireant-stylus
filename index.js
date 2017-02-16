@@ -65,7 +65,7 @@ module.exports = function(file) {
             if (err) {
                 console.log(timestamp(), chalk.yellow.bold('-------------- ERROR --------------'));
                 console.log(timestamp(), chalk.red(err.message));
-                return false;
+                css = '';
             } else {
                 if (typeof options.minify.disabled !== 'undefined' && options.minify.disabled) {
                     css = source;
