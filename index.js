@@ -63,7 +63,7 @@ module.exports = function(file) {
     inst.include(folder).
         render(function(err, source) {
             if (err) {
-                console.log(timestamp(), chalk.yellow.bold('-------------- ERROR IN ' + to + ' --------------'));
+                console.log(timestamp(), chalk.yellow.bold('-------------- ERROR --------------'));
                 console.log(timestamp(), chalk.red(err.message));
                 return false;
             } else {
