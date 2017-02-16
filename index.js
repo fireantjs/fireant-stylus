@@ -25,12 +25,18 @@ var options = {
 // Stylus
 module.exports = function(file) {
     // Minify options
-    if (global.options.stylus.minify) {
+    if (typeof global.options !== 'undefined' &&
+        typeof global.options.stylus !== 'undefined' &&
+        typeof global.options.stylus.minify !== 'undefined'
+    ) {
         options.minify = global.options.stylus.minify;
     }
 
     // Autoprefixer options
-    if (global.options.stylus.autoprefixer) {
+    if (typeof global.options  !== 'undefined' &&
+        typeof global.options.stylus  !== 'undefined' &&
+        typeof global.options.stylus.autoprefixer
+    ) {
         options.autoprefixer = global.options.stylus.autoprefixer;
     }
 
@@ -48,7 +54,7 @@ module.exports = function(file) {
     // Run Stylus
     var inst;
 
-    if (options.autoprefixer.disabled) {
+    if (typeof options.autoprefixer.disabled !== 'undefined' && options.autoprefixer.disabled) {
         inst = stylus(source);
     } else {
         inst = stylus(source).use(autoprefixer(options.autoprefixer));
@@ -61,11 +67,11 @@ module.exports = function(file) {
                 console.log(timestamp(), chalk.red(err.message));
                 return false;
             } else {
-                if (!options.minify.disabled) {
+                if (typeof options.minify.disabled !== 'undefined' && options.minify.disabled) {
+                    css = source;
+                } else {
                     var output = new minifycss(options.minify).minify(source);
                     css = output.styles;
-                } else {
-                    css = source;
                 }
             }
         }
